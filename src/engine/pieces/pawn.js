@@ -15,9 +15,11 @@ export default class Pawn extends Piece {
         const move = isWhite? 1 : -1;
         const isFirstMove = ((isWhite && currentSquare.row===1) || (!isWhite && currentSquare.row===GameSettings.BOARD_SIZE-2));
         let square = Square.at(currentSquare.row + move, currentSquare.col);
-        if (board.getPiece(square)===undefined){availableMoves.push(square);}
-        square = Square.at(currentSquare.row + 2*move, currentSquare.col);
-        if (isFirstMove && board.getPiece(square)===undefined) {availableMoves.push(square);}
-        return availableMoves
+        if (board.getPiece(square)===undefined){
+            availableMoves.push(square);
+            square = Square.at(currentSquare.row + 2*move, currentSquare.col);
+            if (isFirstMove && board.getPiece(square)===undefined) {availableMoves.push(square);}
+        }
+        return availableMoves;
     }
 }

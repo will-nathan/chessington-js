@@ -5,9 +5,9 @@ import GameSettings from '../gameSettings';
 export default class Piece {
     constructor(player) {
         this.player = player;
-        this.directions = new Array(0);
-
+        this.directions = []
     }
+
     
     getAvailableMoves(board) {
         throw new Error('This method must be implemented, and return a list of available moves');
