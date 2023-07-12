@@ -17,7 +17,7 @@ export default class Piece {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
     }
-    getAvailableMovesFromDirections(board, isKnight = false) {
+    getAvailableMovesFromDirections(board, onlyOnce = false) {
         let availableMoves = new Array(0);
         const currentSquare = board.findPiece(this);
           let square
@@ -26,7 +26,7 @@ export default class Piece {
               while (square.row >= 0 && square.row < GameSettings.BOARD_SIZE && square.col >= 0 && square.col < GameSettings.BOARD_SIZE) {
                   if (board.getPiece(square)===undefined){
                     availableMoves.push(square);
-                    if (isKnight == true) {break}
+                    if (onlyOnce == true) {break}
                 } else {break}
                   square = Square.at(square.row + direction.row, square.col + direction.col);
               }
