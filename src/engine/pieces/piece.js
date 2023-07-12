@@ -18,13 +18,17 @@ export default class Piece {
         board.movePiece(currentSquare, newSquare);
     }
 
+    checkSquareInRange(square) {
+        return (square.row >= 0 && square.row < GameSettings.BOARD_SIZE && square.col >= 0 && square.col < GameSettings.BOARD_SIZE)
+    }
+
     getAvailableMovesFromDirections(board, onlyOnce = false) {
         let availableMoves = new Array(0);
         const currentSquare = board.findPiece(this);
           let square
           for (const direction of this.directions) {
               square = Square.at(currentSquare.row+direction.row, currentSquare.col+direction.col)
-              while (square.row >= 0 && square.row < GameSettings.BOARD_SIZE && square.col >= 0 && square.col < GameSettings.BOARD_SIZE) {
+              while (this.checkSquareInRange(square)) {
                   if (board.getPiece(square)===undefined){
                     availableMoves.push(square);
                     if (onlyOnce == true) {break}
