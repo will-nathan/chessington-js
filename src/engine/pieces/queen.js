@@ -6,10 +6,7 @@ import GameSettings from '../gameSettings';
 export default class Queen extends Piece {
     constructor(player) {
         super(player);
-    }
-
-    getAvailableMoves(board) {
-        const directions = [
+        this.directions = [
             { row: 1, col: 0 },
             { row: -1, col: 0 },  
             { row: 0, col: 1 },  
@@ -19,6 +16,9 @@ export default class Queen extends Piece {
             { row: 1, col: -1 },  
             { row: 1, col: 1 }
             ];
-          return this.getAvailableMovesFromDirections(board, directions);
+    }
+
+    getAvailableMoves(board) {
+          return this.getAvailableMovesFromDirections(board);
     }
 }
