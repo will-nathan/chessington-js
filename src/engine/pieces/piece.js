@@ -16,11 +16,15 @@ export default class Piece {
     moveTo(board, newSquare) {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
+       let kingSquare = board.inCheck()
+       
     }
 
     checkSquareInRange(square) {
         return (square.row >= 0 && square.row < GameSettings.BOARD_SIZE && square.col >= 0 && square.col < GameSettings.BOARD_SIZE)
     }
+
+   
 
     getAvailableMovesFromDirections(board, onlyOnce = false) {
         let availableMoves = new Array(0);
