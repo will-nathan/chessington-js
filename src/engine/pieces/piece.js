@@ -17,6 +17,7 @@ export default class Piece {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
     }
+
     getAvailableMovesFromDirections(board, onlyOnce = false) {
         let availableMoves = new Array(0);
         const currentSquare = board.findPiece(this);
@@ -27,7 +28,10 @@ export default class Piece {
                   if (board.getPiece(square)===undefined){
                     availableMoves.push(square);
                     if (onlyOnce == true) {break}
-                } else {break}
+                } else if (board.getPiece(square).player!== this.player) {
+                    availableMoves.push(square)
+                    break;
+                } else {break};
                   square = Square.at(square.row + direction.row, square.col + direction.col);
               }
           }
