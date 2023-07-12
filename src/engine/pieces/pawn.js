@@ -8,10 +8,6 @@ export default class Pawn extends Piece {
         super(player);
     }
 
-    isSpaceAvailable(board) {
-        return board.getPiece(square)===undefined
-    }
-
     getAvailableMoves(board) {
         let availableMoves = new Array(0);
         const currentSquare = board.findPiece(this);
