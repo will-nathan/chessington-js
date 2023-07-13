@@ -55,35 +55,32 @@ export default class Board {
                 }
             }
         }
-        console.log('====================================')
-        return Square.at(0,0)
-        // throw new Error('The supplied piece is not on the board');
+        //return Square.at(0,0)
+        throw new Error('The supplied piece is not on the board');
     }
 
-    inCheck() {
-        let opponent
-        if (this.currentPlayer == Player.WHITE) {
-            opponent = Player.BLACK
-        } else {opponent = Player.WHITE}
+    inCheck(isWhite) {
+        let player;
+        let opponent;
+        if (isWhite) {
+            player = Player.WHITE;
+            opponent = Player.BLACK;
+        } else {
+            player = Player.BLACK;
+            opponent = Player.WHITE;
+        }
         let kingSquare = this.findKing(opponent);
-        let square
-        console.log('Running in check')
+        let square;
         for (let i=0; i < GameSettings.BOARD_SIZE; i++) {
             for (let j=0; j < GameSettings.BOARD_SIZE; j++) {
                 square = Square.at(i,j);
                 const possiblePiece = this.getPiece(square);
-            if (possiblePiece !== undefined && possiblePiece.player == this.currentPlayer) {
+            if (possiblePiece !== undefined && possiblePiece.player == player) {
 
-
-                possiblePiece.getAvailableMoves(this).forEach(square => {
-                    let sameRow = square.row==kingSquare.row
-                    let sameCol = square.col==kingSquare.col
-                    if (sameRow && sameCol) {
-                        console.log('in check')
-                        return true
-                    }           
-                })
-                
+                const trueFalse = possiblePiece.getAvailableMoves(this).map(square => {return (square.row==kingSquare.row && square.col == kingSquare.col)})
+                if (trueFalse.includes(true)){
+                    return true
+                }               
             }
             }
         }

@@ -78,8 +78,9 @@ function onSnapEnd() {
 
 function updateStatus() {
     const player = board.currentPlayer === Player.WHITE ? 'White' : 'Black';
-   /*  const inCheck = board.inCheck() ? 'Check' : 'Not Check'; */
-    document.getElementById('turn-status').innerHTML = `${player} to move`;
+    const BlackInCheck = (board.inCheck(true))? 'Black in check' : '';
+    const WhiteInCheck = (board.inCheck(false))? 'White in check' : ''
+    document.getElementById('turn-status').innerHTML = `${BlackInCheck} ${WhiteInCheck} ${player} to move`;
 }
 
 function boardInStartingPosition() {

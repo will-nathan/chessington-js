@@ -16,7 +16,6 @@ export default class Piece {
     moveTo(board, newSquare) {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
-       let kingSquare = board.inCheck()
        
     }
 
